@@ -1,2 +1,162 @@
-# Rachel
-Just a church invitation, I needed it for a url lol
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Regreso a Cristo — Bienvenidos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin:0;
+      font-family:'Poppins', sans-serif;
+      background: linear-gradient(to bottom, #4b1e00, #f5a623); /* warm fall gradient */
+      color:#f5e6d3;
+      overflow-x:hidden;
+      position:relative;
+    }
+
+    /* Rain animation */
+    .raindrop {
+      position:fixed;
+      width:2px;
+      height:15px;
+      background: rgba(255,255,255,0.2);
+      top:-20px;
+      animation: rainFall 1s linear infinite;
+    }
+    @keyframes rainFall {
+      to {transform: translateY(100vh);}
+    }
+
+    /* Clouds animation */
+    .cloud { position:absolute; top:50px; width:250px; height:100px; background: rgba(255,255,255,0.05); border-radius:100px; animation:cloudMove 60s linear infinite; }
+    @keyframes cloudMove { 0% {left:-300px;} 100% {left:100%;} }
+
+    /* Leaves animation */
+    .leaf { position:absolute; width:30px; height:30px; background:url('https://i.imgur.com/3R8e7B2.png') no-repeat center/contain; animation:fall 10s linear infinite; }
+    @keyframes fall { 0% {transform: translateY(-50px) rotate(0deg);} 100% {transform: translateY(100vh) rotate(360deg);} }
+
+    header { padding:40px 20px; text-align:center; position:relative; z-index:2; }
+    h1 { font-size:3rem; color:#c46a2a; margin-bottom:10px; text-shadow: 0 0 10px #f5a623; }
+    .invite { font-size:1.2rem; }
+    nav { text-align:center; margin-bottom:20px; }
+    nav ul { list-style:none; padding:0; }
+    nav li { display:inline-block; margin:0 10px; }
+    nav a { text-decoration:none; color:#f5e6d3; font-weight:600; }
+    .lang-btn { cursor:pointer; margin:0 5px; padding:6px 14px; border-radius:20px; border:none; background:#c46a2a; color:#fff; font-weight:600; }
+    section { padding:60px 20px; max-width:900px; margin:auto; text-align:center; position:relative; z-index:2; }
+    h2 { font-size:2rem; color:#c46a2a; margin-bottom:15px; text-shadow:0 0 5px #f5a623; }
+    p, li { font-size:1.2rem; line-height:1.6; }
+
+    .music-btn { position:fixed; bottom:20px; right:20px; padding:10px 18px; background:#c46a2a; color:#fff; border:none; border-radius:25px; cursor:pointer; font-weight:600; box-shadow:0 0 10px #f5a623; z-index:3; }
+
+    /* Map preview */
+    .map-container { margin-top:20px; }
+    iframe { width:100%; height:300px; border:0; border-radius:15px; }
+  </style>
+  <script>
+  function switchLang(lang){
+    document.querySelectorAll('[data-es]').forEach(el=>{
+      el.innerText = lang === 'es' ? el.getAttribute('data-es') : el.getAttribute('data-en');
+    });
+  }
+
+  function toggleMusic(){
+    let music = document.getElementById('worshipMusic');
+    if(music.paused){ music.play(); } else { music.pause(); }
+  }
+
+  window.onload = function(){
+    // Create leaves
+    for(let i=0;i<15;i++){
+      let leaf = document.createElement('div');
+      leaf.className='leaf';
+      leaf.style.left=Math.random()*100+'%';
+      leaf.style.animationDuration=(5+Math.random()*5)+'s';
+      document.body.appendChild(leaf);
+    }
+    // Create clouds
+    for(let i=0;i<3;i++){
+      let cloud = document.createElement('div');
+      cloud.className='cloud';
+      cloud.style.top=(50+Math.random()*100)+'px';
+      cloud.style.animationDuration=(50+Math.random()*20)+'s';
+      document.body.appendChild(cloud);
+    }
+    // Create raindrops
+    for(let i=0;i<50;i++){
+      let drop = document.createElement('div');
+      drop.className='raindrop';
+      drop.style.left=Math.random()*100+'%';
+      drop.style.animationDuration=(0.5+Math.random()*1)+'s';
+      drop.style.animationDelay=(Math.random()*2)+'s';
+      document.body.appendChild(drop);
+    }
+  }
+  </script>
+</head>
+<body>
+  <audio id="worshipMusic" loop>
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+  </audio>
+  <button class="music-btn" onclick="toggleMusic()">🎵 Play Worship Piano</button>
+
+  <header>
+    <div>
+      <button class="lang-btn" onclick="switchLang('es')">ES</button>
+      <button class="lang-btn" onclick="switchLang('en')">EN</button>
+    </div>
+    <h1 data-es="Regreso a Cristo" data-en="Return to Christ"></h1>
+    <p class="invite" data-es="Te invitamos con amor — vuelve a casa 🤎" data-en="We warmly invite you — come home 🤎"></p>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="#home" data-es="Inicio" data-en="Home">Inicio</a></li>
+      <li><a href="#services" data-es="Servicios" data-en="Services">Servicios</a></li>
+      <li><a href="#events" data-es="Eventos" data-en="Events">Eventos</a></li>
+      <li><a href="#about" data-es="Sobre Nosotros" data-en="About Us">Sobre Nosotros</a></li>
+      <li><a href="#contact" data-es="Contacto" data-en="Contact">Contacto</a></li>
+    </ul>
+  </nav>
+
+  <section id="home">
+    <h2 data-es="Bienvenidos a Regreso a Cristo" data-en="Welcome to Return to Christ"></h2>
+    <p data-es="Un lugar donde Dios transforma corazones y restaura vidas. Ven tal como eres, Dios te está esperando ✨" data-en="A place where God transforms hearts and restores lives. Come as you are — God is waiting for you ✨"></p>
+  </section>
+
+  <section id="services">
+    <h2 data-es="Horarios de Servicio" data-en="Service Times"></h2>
+    <ul>
+      <li data-es="Domingo — 10:00 AM" data-en="Sunday — 10:00 AM"></li>
+      <li data-es="Martes — 7:30 PM" data-en="Tuesday — 7:30 PM"></li>
+      <li data-es="Jueves — 7:30 PM" data-en="Thursday — 7:30 PM"></li>
+      <li data-es="Jóvenes Viernes — 9:00 PM" data-en="Youth Friday — 9:00 PM"></li>
+    </ul>
+  </section>
+
+  <section id="events">
+    <h2 data-es="Próximos Eventos" data-en="Upcoming Events"></h2>
+    <p data-es="✨ ESTE VIERNES — SERVICIO DE JÓVENES — 9PM ✨\nTrae a un amigo — Dios está obrando 💒" data-en="✨ THIS FRIDAY — YOUTH SERVICE — 9PM ✨\nBring a friend — God is moving 💒"></p>
+    <p data-es="Dios está preparando algo hermoso — más eventos próximamente ✨" data-en="God is preparing something beautiful — more events are coming ✨"></p>
+  </section>
+
+  <section id="about">
+    <h2 data-es="Nuestro Mensaje" data-en="Our Message"></h2>
+    <p data-es="Somos una familia en Cristo — un lugar para sanar, crecer y adorar juntos. 🤎\nSomos una generación levantándose por Jesús, llenos de propósito y pasión. ✨\nNo importa de dónde vengas o lo que hayas pasado — eres bienvenido aquí." data-en="We are a family in Christ — a place to heal, grow, and worship together. 🤎\nWe’re a generation rising up for Jesus, burning with purpose and passion. ✨\nNo matter where you come from or what you’ve been through — you are welcome here."></p>
+  </section>
+
+  <section id="contact">
+    <h2 data-es="Contacto" data-en="Contact"></h2>
+    <p data-es="Teléfono: 717-699-9884" data-en="Phone: 717-699-9884"></p>
+    <p data-es="Por favor no llamar entre 6:00 AM — 3:00 PM" data-en="Please do not call between 6:00 AM — 3:00 PM"></p>
+    <p data-es="Dirección: <a href='https://maps.apple.com/place?coordinate=40.000097,-76.854626&name=Marked%20Location&map=explore' target='_blank'>Calle Falsa 123, Ciudad, Estado</a>" data-en="Address: <a href='https://maps.apple.com/place?coordinate=40.000097,-76.854626&name=Marked%20Location&map=explore' target='_blank'>123 Fake Street, City, State</a>"></p>
+    <div class="map-container">
+      <iframe src="https://maps.apple.com/embed?ll=40.000097,-76.854626&amp;q=Regreso+a+Cristo" allowfullscreen></iframe>
+    </div>
+  </section>
+
+</body>
+</html>
